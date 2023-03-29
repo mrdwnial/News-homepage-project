@@ -1,53 +1,236 @@
 :root {
-  --White: hsl(0, 0%, 100%);
-  --Light-gray: hsl(212, 45%, 89%);
-  --Grayish-blue: hsl(220, 15%, 55%);
-  --Dark-blue: hsl(218, 44%, 22%);
+  --Soft-orange: hsl(35, 77%, 62%);
+  --Soft-red: hsl(5, 85%, 63%);
+  --Off-white: hsl(36, 100%, 99%);
+  --Grayish-blue: hsl(233, 8%, 79%);
+  --Dark-grayish-blue: hsl(236, 13%, 42%);
+  --Very-dark-blue: hsl(240, 100%, 5%);
 }
 
 * {
   margin: 0;
   padding: 0;
   border: none;
-  font-family: Outfit;
+  font-family: Inter;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: var(--Soft-red);
 }
 
 body {
   font-size: 15px;
-  font-weight: 400, 700;
-  background-color: var(--Light-gray);
+  font-weight: 400, 700, 800;
+  background-color: var(--Off-white);
+  overflow-x: hidden;
 }
 
 @font-face {
-  font-family: Outfit;
-  src: url(../font/Outfit-Regular.ttf);
+  font-family: Inter;
+  src: url(../assets/fonts/static/Inter-Regular.ttf);
+}
+@font-face {
+  font-family: Inter-Bold;
+  src: url(../assets/fonts/static/Inter-Bold.ttf);
+}
+@font-face {
+  font-family: Inter-ExtraBold;
+  src: url(../assets/fonts/static/Inter-ExtraBold.ttf);
+}
+.mobile-Icon-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.Menu-btn-mobile {
+  cursor: pointer;
+  display: inline-block;
+  position: fixed;
+  right: 0;
+  z-index: 300;
 }
 
-.section .content {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-  background-color: var(--White);
-  border-radius: 20px;
+.bar1,
+.bar2,
+.bar3 {
+  width: 40px;
+  height: 3px;
+  background-color: #333;
+  box-shadow: 0 0 10px 4px var(--Off-white);
+  margin: 6px 0;
+  transition: 0.4s;
 }
-.section .content img {
+
+.change .bar1 {
+  transform: translate(0, 9px) rotate(-45deg);
+  box-shadow: none;
+}
+
+.change .bar2 {
+  opacity: 0;
+}
+
+.change .bar3 {
+  transform: translate(0, -9px) rotate(45deg);
+  box-shadow: none;
+}
+
+.side-menu-content {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 100%;
+  background-color: var(--Off-white);
+  /* animation-duration: 1s; */
+  animation: closeMenu 1s;
+  z-index: 200;
+}
+.side-menu-mobile ul {
+  position: absolute;
   width: 100%;
-  border-radius: inherit;
+  padding: 0;
+  margin-top: 10em;
+  margin-left: 1em;
 }
-.section .content div span:nth-child(2) {
-    color: var(--Grayish-blue);
-  }
-  
+.side-menu-mobile ul li {
+  margin: 20px 0;
+}
+.side-menu-mobile ul li a {
+  font-size: 1.4em;
+}
+
+.change ~ .side-menu-content {
+  animation: openMenu 1s;
+}
+
+.screen-darken {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  opacity: 100%;
+  visibility: visible;
+  animation: hideCover 1s;
+}
+.change + .screen-darken{
+  animation: showCover 1s;
+}
+
+
+main .home-page-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main .home-page-top span {
+  font-size: 2.7em;
+  font-family: Inter-ExtraBold;
+}
+
+main .home-page-top div p {
+  font-size: 1em;
+  color: var(--Dark-grayish-blue);
+}
+main .home-page-top div .btn {
+  color: var(--Off-white);
+  background-color: var(--Soft-red);
+  letter-spacing: 4px;
+  font-size: 0.9em;
+  font-family: Inter-Bold;
+  text-transform: uppercase;
+  padding: 0.8em 0;
+}
+
+main .home-page-new-box .new-box-container {
+  background-color: var(--Very-dark-blue);
+}
+main .home-page-new-box .new-box-container hr {
+  color: var(--Grayish-blue);
+}
+main .home-page-new-box .new-box-container h1 {
+  color: var(--Soft-orange);
+  font-family: Inter-Bold;
+}
+main .home-page-new-box .new-box-container div a {
+  cursor: pointer;
+  display: block;
+  color: var(--Off-white);
+  font-size: 1.4em;
+  font-family: Inter-Bold;
+}
+main .home-page-new-box .new-box-container div a:hover,
+main .home-page-new-box .new-box-container div a:active {
+  color: var(--Soft-orange);
+}
+main .home-page-new-box .new-box-container div span {
+  color: var(--Dark-grayish-blue);
+}
+
+footer {
+  position: relative;
+}
+footer section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer section .footer-items-detail {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-direction: column;
+}
+footer section .footer-items-detail h1 {
+  font-family: Inter-ExtraBold;
+  font-size: 2em;
+  color: var(--Grayish-blue);
+}
+footer section .footer-items-detail a {
+  cursor: pointer;
+  display: block;
+  font-family: Inter-ExtraBold;
+  font-size: 1em;
+  color: var(--Very-dark-blue);
+}
+footer section .footer-items-detail a:hover,
+footer section .footer-items-detail a:active {
+  color: var(--Soft-red);
+}
+footer section .footer-items-detail p {
+  font-size: 0.9em;
+  color: var(--Dark-grayish-blue);
+}
+
+@keyframes openMenu {
+  from {width: 0;}
+  to {width: 70%;}
+}
+@keyframes closeMenu {
+  from {width: 70%;}
+  to {width: 0;}
+}
+
+@keyframes showCover {
+  from {opacity: 0;}
+  to {opacity: 100%;}
+}
+@keyframes hideCover {
+  from {opacity: 100%;}
+  to {opacity: 0;}
+}
